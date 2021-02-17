@@ -2,13 +2,14 @@ package com.tomsk.android.beatbox
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.tomsk.android.beatbox.databinding.ActivityMainBinding
 import com.tomsk.android.beatbox.databinding.ListItemSoundBinding
-
+private val TAG = "__MActivity"
 class MainActivity : AppCompatActivity() {
 
     private lateinit var beatBox: BeatBox
@@ -35,13 +36,16 @@ class MainActivity : AppCompatActivity() {
 
         init {
             binding.viewModel = SoundViewModel()
+            Log.d(TAG, "Init SoundHolder")
         }
 
         fun bind(sound: Sound) {
+
             binding.apply {
                 viewModel?.sound = sound
                 executePendingBindings()
             }
+            Log.d(TAG, "bind $sound")
         }
 
     }
@@ -55,12 +59,17 @@ class MainActivity : AppCompatActivity() {
                     parent,
                     false
             )
+
+            binding.lifecycleOwner = this@MainActivity
+            Log.d(TAG, "____onCreateViewHolder")
             return SoundHolder(binding)
         }
 
         override fun onBindViewHolder(holder: SoundHolder, position: Int) {
             val sound = sounds[position]
             holder.bind(sound)
+            Log.d(TAG, "____onBindViewHolder  bind $sound  on position  $position" )
+
         }
 
         override fun getItemCount() = sounds.size
