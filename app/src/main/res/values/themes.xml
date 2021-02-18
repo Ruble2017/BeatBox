@@ -16,6 +16,6 @@
 
 
     <style name="BeatBoxButton">
-        <item name="android:background">@color/dark_blue</item>
+        <item name="android:backgroundTint">@color/dark_blue</item>
     </style>
 </resources>
