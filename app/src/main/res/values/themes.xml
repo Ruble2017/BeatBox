@@ -18,4 +18,8 @@
     <style name="BeatBoxButton">
         <item name="android:backgroundTint">@color/dark_blue</item>
     </style>
+
+    <style name="BeatBoxButton.Strong">
+        <item name="android:textStyle">bold</item>
+    </style>
 </resources>
